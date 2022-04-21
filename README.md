@@ -1,4 +1,4 @@
-This is a simple install to get AI Patrols up and running on you offline.Chenarusplus map
+This is a simple install to get AI Patrols up and running on your servers offline.Chenarusplus map
 All loadouts were made with vanilla equipment and the init.c file has only been altered 
 to include the needed lines of code to make the AI mod work.
 
