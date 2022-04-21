@@ -20,9 +20,9 @@ next find the Main method and copy the following code somewhere before the closi
 
 close init.c
 
-Next copy the included directory structres with files into your server profiles directory
-and mpmission directory. If your Server profiles directory is named anything other than 
-profiles be sure to place the following into your profiles directory.
+Next copy the included directory structres with files into your server directory. 
+If your Server profiles directory is named anything other than 
+profiles be sure to place the contents of profiles into your servers profiles directory.
 If you are using an older version of eAI or previous versions of the AI_init.c you can
 remove the directories and files if you no longer need the data inside
 
