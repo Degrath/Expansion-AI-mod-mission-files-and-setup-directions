@@ -6,16 +6,19 @@ This is designed to be a drop and go package for a fresh server install using th
 
 Start and run the server one time to generate the needed files then shutdown first.
 
-Next copy the included directory structres with files into your server directory. 
-If your Server profiles directory is named anything other than profiles be sure to
-place the contents of profiles into your servers profiles directory.
+Next copy the included directory structres with files into the root of your server directory. 
+If your Server profiles directory is named anything other than profiles be sure to place the contents
+of profiles into your servers profiles directory.
 
-Open the profiles your profiles directory and in the eAISettings.json file edit the following line of
-code for Admin settings:
+Open your server profiles directory and in the eAISettings.json file edit the following line of
+code with your steamID for Admin settings:
 
 		"Admins":["YOUR STEAMID HERE"]
+save and close eAIsettings.json.
+Launch and enjoy.
 
-Manual editing for existing servers.
+
+MANUAL EDITING FOR EXISTING SERVERS
 
 Open your servers profiles directory and copy the supplied eAI and ExpansionMod directories into
 your profiles directory.
