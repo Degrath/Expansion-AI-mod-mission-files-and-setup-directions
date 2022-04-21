@@ -23,6 +23,7 @@ MANUAL EDITING FOR EXISTING SERVERS
 Open your servers profiles directory and copy the supplied eAI and ExpansionMod directories into
 your profiles directory.
 
+open the init.c found in your servers mpmissions directory.
 Edit the top line of your file to include the following line of code:
 
 		#include "$CurrentDir:mpmissions/dayzoffline.chernarusplus/AI/init_eAI.c"
