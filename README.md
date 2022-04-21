@@ -16,6 +16,10 @@ code for Admin settings:
 		"Admins":["YOUR STEAMID HERE"]
 
 Manual editing for existing servers.
+
+Open your servers profiles directory and copy the supplied eAI and ExpansionMod directories into
+your profiles directory.
+
 Edit the top line of your file to include the following line of code:
 
 		#include "$CurrentDir:mpmissions/dayzoffline.chernarusplus/AI/init_eAI.c"
@@ -29,7 +33,7 @@ Next find the Main method and copy the following code somewhere before the closi
 
 save and close init.c
 
- Now open the supplied mpmissions directory can copy AI directory into your mpmissions directory.
+ Now open the supplied mpmissions directory can copy the AI directory into your mpmissions directory.
  
  If you are using an older version of eAI or previous versions of the AI_init.c you can
 remove the directories and files if you no longer need the data inside.
