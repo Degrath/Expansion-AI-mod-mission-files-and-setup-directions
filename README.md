@@ -12,6 +12,7 @@ place the contents of profiles into your servers profiles directory.
 
 Open the profiles your profiles directory and in the eAISettings.json file edit the following line of
 code for Admin settings:
+
 		"Admins":["YOUR STEAMID HERE"]
 
 Manual editing for existing servers.
