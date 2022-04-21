@@ -9,7 +9,7 @@ or manually edit the top line of your file to include the following line of code
 
 		#include "$CurrentDir:mpmissions/dayzoffline.chernarusplus/AI/init_eAI.c"
 
-next find the Main method and copy the following code somewhere before the closing bracket
+Next find the Main method and copy the following code somewhere before the closing bracket
  of the main method. Keep it outside of any for loops inside of main.
  
 		//Initialize Patrols----------------------------------
