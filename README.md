@@ -2,7 +2,8 @@ This is a simple install to get AI Patrols up and running on your servers offlin
 All loadouts were made with vanilla equipment and the init.c file has only been altered to include 
 the needed lines of code to make the AI mod work.
 
-This is designed to be a drop and go package for a fresh server install using the default mission.
+This is designed to be a drop and go package for a fresh server install using the default mission,
+and assumes that you have all the necessary expasion mods and their dependancies installed.
 
 Start and run the server one time to generate the needed files then shutdown first.
 
