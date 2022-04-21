@@ -18,6 +18,8 @@ save and close eAIsettings.json.
 Launch and enjoy.
 
 
+
+
 MANUAL EDITING FOR EXISTING SERVERS
 
 Open your servers profiles directory and copy the supplied eAI and ExpansionMod directories into
