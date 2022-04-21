@@ -2,6 +2,9 @@ This is a simple install to get AI Patrols up and running on you offline.Chenaru
 All loadouts were made with vanilla equipment and the init.c file has only been altered 
 to include the needed lines of code to make the AI mod work.
 
+Start and run the server one time to generate the needed files then shutdown first
+This is designed to be a drop and go package.
+
 For a vanilla Chenarus map, copy the included init.c file over top of your existing file 
 or manually edit the top line of your file to include the following line of code:
 
