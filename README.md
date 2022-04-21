@@ -41,5 +41,8 @@ save and close init.c
  If you are using an older version of eAI or previous versions of the AI_init.c you can
 remove the directories and files if you no longer need the data inside.
 
+If you are using any other map you will need to edit the startpos and the waypoints for the patrols listed in the init_eAI.c and PatrolSettings.json
+they will only work for mission with the Chenarus map.
+
  You can edit the loadout.json files and the PatrolSettings.json now to suit your servers need
 or Launch the server and enjoy.
