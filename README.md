@@ -1,3 +1,6 @@
+*****There is an issue with the lastest version of Expansion-AI for the time being you will need to place your Loadout files into the profiles/eai/ directory
+with the Master.c and AISettings.json files until we can get it worked out.*****
+
 This is a simple install to get AI Patrols up and running on your servers offline.Chenarusplus map.
 All loadouts were made with vanilla equipment and the init.c file has only been altered to include 
 the needed lines of code to make the AI mod work.
