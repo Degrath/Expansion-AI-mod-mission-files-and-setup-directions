@@ -43,7 +43,7 @@
     ],
     "WeaponHandgunMagCount": [
         1,
-		2
+	2
     ],
     "WeaponHealth": [
         75,
@@ -69,8 +69,8 @@
 		"WaterBottle"
     ],
 	"LootRandomChance": [
-		60
-        10,
+		60,
+        	10,
 		10,
 		10,
 		10,
