@@ -29,7 +29,7 @@ your profiles directory.
 open the init.c found in your servers mpmissions directory.
 Edit the top line of your file to include the following line of code:
 
-		#include "$CurrentDir:mpmissions/dayzoffline.chernarusplus/AI/init_eAI.c"
+		#include "$CurrentDir:mpmissions/dayzOffline.chernarusplus/AI/init_eAI.c"
 		(Be sure to change the mission name to the mission you are using if needed.)
 
 Next find the Main method and copy the following code somewhere before the closing bracket
