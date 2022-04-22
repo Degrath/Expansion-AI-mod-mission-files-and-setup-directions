@@ -183,8 +183,8 @@ eAIFaction Expansion_GetAIFaction(string faction)
 void DefaultDynamicPatrols(out ExpAIGroups Data)
 {
     Data = new ExpAIGroups();
-    Data.Group.Insert( new ExpAIGroup(5, "WALK",      "LOOP",     "WEST",     "SoldierCDFLoadout .json",  "6137.18 8.1828 14667.3",               {"6137.18 8.1828 14667.3", "6127.65 8.1598 14655.7", "6127.19 6.34518 14647.1"} ));
+    Data.Group.Insert( new ExpAIGroup(5, "WALK",      "LOOP",     "WEST",     "SoldierCDFLoadout.json",  "6137.18 8.1828 14667.3",               {"6137.18 8.1828 14667.3", "6127.65 8.1598 14655.7", "6127.19 6.34518 14647.1"} ));
     Data.Group.Insert( new ExpAIGroup(5, "WALK",     "LOOP",     "EAST",     "SoldierMOTRSLoadout.json",  "6167.18 8.1828 14667.3",               {"6167.18 8.1828 14667.3", "6127.65 8.1598 14655.7", "6127.19 6.34518 14647.1"} ));
-    Data.Group.Insert( new ExpAIGroup(10,"JOG",      "REVERSE",  "EAST",     "SoldierMOTRSLoadout .json",   "13342.375977 27.020344 11228.225586",  {"13342.375977 27.020344 11228.225586", "13469.069336 11.282786 11163.261719", "13567.762695 6.128973 11127.067383"} ));
+    Data.Group.Insert( new ExpAIGroup(10,"JOG",      "REVERSE",  "EAST",     "SoldierMOTRSLoadout.json",   "13342.375977 27.020344 11228.225586",  {"13342.375977 27.020344 11228.225586", "13469.069336 11.282786 11163.261719", "13567.762695 6.128973 11127.067383"} ));
     Data.Group.Insert( new ExpAIGroup(10, "SPRINT",   "LOOP",     "INSURGENT","Raiderloadout.json",    "7332.387695 5.712450 2651.121338",     {"7332.387695 5.712450 2651.121338", "7632.803223 5.507639 3075.661865", "7621.013184 5.892049 3083.053223"} ));
 }
