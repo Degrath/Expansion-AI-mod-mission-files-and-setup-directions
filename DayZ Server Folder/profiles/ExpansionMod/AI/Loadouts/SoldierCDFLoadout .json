@@ -68,8 +68,8 @@
 		"WaterBottle"
     ],
 	"LootRandomChance": [
-		60
-        10,
+		60,
+        	10,
 		10,
 		10,
 		10,
