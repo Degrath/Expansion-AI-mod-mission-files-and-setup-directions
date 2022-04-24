@@ -1,5 +1,5 @@
 *****There is an issue with the lastest version of Expansion-AI for the time being you will need to place your Loadout files into the profiles/eai/ directory
-with the Master.c and AISettings.json files until we can get it worked out.*****
+with the Master.c and AISettings.json files until we can get it worked out. Also set the respawn time in both the init_eAI.c and patrolsettings.json to -1 or your aipatrols will not respawn until the next update*****
 
 This is a simple install to get AI Patrols up and running on your servers offline.Chenarusplus map.
 All loadouts were made with vanilla equipment and the init.c file has only been altered to include 
