@@ -58,7 +58,7 @@ or Launch the server and enjoy.
 
 
 
-***Drop and go setup supported maps:
+*****Drop and go setup supported maps:
 	Chernarusplus
 	chiemsee
 	deerisle
@@ -66,5 +66,5 @@ or Launch the server and enjoy.
 	esseker
 	namalsk
 	takistanplus
-	more soon... ***
+	more soon... *****
 	
