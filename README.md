@@ -1,7 +1,9 @@
 *****There is an issue with the lastest version of Expansion-AI for the time being you will need to place your Loadout files into the profiles/eai/ directory
 with the Master.c and AISettings.json files until we can get it worked out. Also set the respawn time in both the init_eAI.c and patrolsettings.json to -1 or your aipatrols will not respawn until the next update*****
 
-This is a simple install to get AI Patrols up and running on your servers offline.Chenarusplus map.
+This is a simple install to get AI Patrols up and running on your servers map. Thanks to truedolphin
+it should now auto detect your map and generate some basic patrols for all of the supported maps listed
+below. More to come in the future.
 All loadouts were made with vanilla equipment and the init.c file has only been altered to include 
 the needed lines of code to make the AI mod work.
 
@@ -53,3 +55,16 @@ they will only work for mission with the Chenarus map.
 
  You can edit the loadout.json files and the PatrolSettings.json now to suit your servers need
 or Launch the server and enjoy.
+
+
+
+***Drop and go setup supported maps:
+	Chernarusplus
+	chiemsee
+	deerisle
+	enoch
+	esseker
+	namalsk
+	takistanplus
+	more soon... ***
+	
