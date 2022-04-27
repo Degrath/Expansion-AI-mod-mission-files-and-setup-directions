@@ -65,4 +65,4 @@ or Launch the server and enjoy.
 	takistanplus
 	more soon... *****
 	
-All files were provided are from the Expansion-AI Mod, The init_eAI.c courtesy of LieutenantMaster#9023 and the "any map" compatibility by truedolphin
+All files were provided are from the Expansion-AI Mod, The init_eAI.c courtesy of LieutenantMaster and the "any map" compatibility code by truedolphin
