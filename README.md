@@ -1,5 +1,5 @@
-**There is an issue with the lastest version of Expansion-AI for the time being you will need to place your Loadout files into the profiles/eai/ directory
-with the Master.c and AISettings.json files until we can get it worked out. Also set the respawn time in both the init_eAI.c and patrolsettings.json to -1 or your aipatrols will not respawn until the next update**
+***There is an issue with the lastest version of Expansion-AI for the time being you will need to place your Loadout files into the profiles/eai/ directory
+with the Master.c and AISettings.json files until we can get it worked out. Also set the respawn time in both the init_eAI.c and patrolsettings.json to -1 or your aipatrols will not respawn until the next update***
 
 This is a simple install to get AI Patrols up and running on your servers map. Thanks to truedolphin
 it should now auto detect your map and generate some basic patrols for all of the supported maps listed
@@ -56,13 +56,13 @@ or Launch the server and enjoy.
 
 
 **Drop and go setup supported maps:
-	Chernarusplus
-	chiemsee
-	deerisle
-	enoch
-	esseker
-	namalsk
-	takistanplus
+	_Chernarusplus_
+	_chiemsee_
+	_deerisle_
+	_enoch_
+	_esseker_
+	_namalsk_
+	_takistanplus_
 	more soon...**
 	
 All files were provided are from the Expansion-AI Mod, The init_eAI.c courtesy of LieutenantMaster and the "any map" compatibility code by truedolphin
