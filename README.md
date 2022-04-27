@@ -3,7 +3,7 @@ with the Master.c and AISettings.json files until we can get it worked out. Also
 
 This is a simple install to get AI Patrols up and running on your servers map. Thanks to truedolphin
 it should now auto detect your map and generate some basic patrols for all of the supported maps listed
-below. More to come in the future.
+at the bottom of this readme. More to come in the future.
 All loadouts were made with vanilla equipment and the init.c file has only been altered to include 
 the needed lines of code to make the AI mod work.
 
