@@ -56,13 +56,13 @@ or Launch the server and enjoy.
 
 
 **Drop and go setup supported maps:
-	_Chernarusplus
-	chiemsee
-	deerisle
-	enoch
-	esseker
-	namalsk
-	takistanplus_
+	- Chernarusplus
+	- chiemsee
+	- deerisle
+	- enoch
+	- esseker
+	- namalsk
+	- takistanplus
 	more soon...**
 	
 All files were provided are from the Expansion-AI Mod, The init_eAI.c courtesy of LieutenantMaster and the "any map" compatibility code by truedolphin
