@@ -24,7 +24,8 @@ code with your steamID for Admin settings:</p>
 save and close eAIsettings.json.
 Launch and enjoy.
 
-
+**Note: To use the defaults patrols listed in the init_eAI.c delete the PatrolSettings.json 
+that is part of this package and the server will generate a new one based upon the defaults.**
 
 
 ## MANUAL EDITING FOR EXISTING SERVERS
