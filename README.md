@@ -1,5 +1,3 @@
-***There is an issue with the lastest version of Expansion-AI for the time being you will need to place your Loadout files into the profiles/eai/ directory
-with the Master.c and AISettings.json files until we can get it worked out.***
 
 ## DROP AND GO SETUP
 This is a simple install to get AI Patrols up and running on your servers map. Thanks to truedolphin
@@ -56,3 +54,4 @@ remove the directories and files if you no longer need the data inside.
 or Launch the server and enjoy.
 
    All files were provided are from the Expansion-AI Mod, The init_eAI.c courtesy of LieutenantMaster and the "any map" compatibility code by truedolphin
+   
