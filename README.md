@@ -1,3 +1,5 @@
+**Currently updating all loadout files to the new format, Drop and go setup will spawn all naked patrols until I can get the new files written. To fix this you must either have your own loadout files or change the default loadouts in the init_eAI.c to "HumanLoadout.json" and delete the PatrolSettings.json before launching... If you are an existing server operator dont forget to update your loadout files to the new format.**
+
 
 ## DROP AND GO SETUP
 This is a simple install to get AI Patrols up and running on your servers map. Thanks to truedolphin
