@@ -73,7 +73,7 @@
         },
         {
             "Faction": "INSURGENT",
-            "LoadoutFile": "Raiderloadout.json",
+            "LoadoutFile": "RaiderLoadout.json",
             "NumberOfAI": 10,
             "Behaviour": "REVERSE",
             "Speed": "WALK",
@@ -227,7 +227,7 @@
         },
         {
             "Faction": "INSURGENT",
-            "LoadoutFile": "Raiderloadout.json",
+            "LoadoutFile": "RaiderLoadout.json",
             "NumberOfAI": 10,
             "Behaviour": "LOOP",
             "Speed": "WALK",
