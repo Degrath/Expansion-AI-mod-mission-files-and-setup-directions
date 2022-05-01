@@ -639,7 +639,7 @@
                     "ConstructionPartsBuilt": []
                 },
 				{
-                    "ClassName": "Saiga",
+                    "ClassName": "Ruger1022",
                     "Chance": 1.0,
                     "Quantity": {
                         "Min": 0.0,
@@ -648,7 +648,7 @@
                     "Health": [],
                     "InventoryAttachments": [
                         {
-                            "SlotName": "Ruger1022",
+                            "SlotName": "",
                             "Items": [
                                 {
                                     "ClassName": "Mag_Ruger1022_30Rnd",
