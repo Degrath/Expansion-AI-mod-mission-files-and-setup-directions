@@ -1,4 +1,4 @@
-#include "$CurrentDir:mpmissions/dayzoffline.chernarusplus/AI/init_eAI.c"
+#include "$CurrentDir:mpmissions/dayzOffline.chernarusplus/AI/init_eAI.c"
 
 void main()
 {
