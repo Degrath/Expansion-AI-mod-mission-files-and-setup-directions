@@ -1,4 +1,3 @@
-**Loadout file locations still a little buggy, Place your loadout files into profiles/eAI/ with the Master.c and eAISettings.json files if you are getting naked patrols**
 
 
 ## DROP AND GO SETUP
