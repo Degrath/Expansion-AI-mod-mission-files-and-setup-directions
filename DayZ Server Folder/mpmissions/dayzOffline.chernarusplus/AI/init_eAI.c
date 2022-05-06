@@ -290,10 +290,9 @@ void ExpInit_DefaultPatrolsSettings(out ExpAIGroups Data)
             Data.Group.Insert( new ExpAIGroup(2, 	"WALK",     "REVERSE",  "WEST",    		"SoldierCDFLoadout.json",  	"4717.85 111.52 7672.94",               {"4717.85 111.52 7672.94", "4311.86 129.89 7290.57", "3957.02 106.42 7239.99", "3498.03 139.88 6967.42", "3241.25 104.45 7299.5", "3663.37 90.21 7627.72", "3894.5 78.88 7776.37"} ));
         break;
         case "takistanplus":
-            Data.Group.Insert( new ExpAIGroup(5, 	"WALK",     "LOOP",     "WEST",     	"SoldierCDFLoadout.json",  	"6137.18 8.1828 14667.3",               {"6137.18 8.1828 14667.3", "6127.65 8.1598 14655.7", "6127.19 6.34518 14647.1"} ));
-            Data.Group.Insert( new ExpAIGroup(5, 	"WALK",     "LOOP",     "EAST",     	"SoldierMOTRSLoadout.json", "6167.18 8.1828 14667.3",               {"6167.18 8.1828 14667.3", "6127.65 8.1598 14655.7", "6127.19 6.34518 14647.1"} ));
-            Data.Group.Insert( new ExpAIGroup(10,	"JOG",      "REVERSE",  "EAST",     	"SoldierMOTRSLoadout.json", "13342.375977 27.020344 11228.225586",  {"13342.375977 27.020344 11228.225586", "13469.069336 11.282786 11163.261719", "13567.762695 6.128973 11127.067383"} ));
-            Data.Group.Insert( new ExpAIGroup(10, 	"SPRINT",   "LOOP",     "INSURGENT",	"Raiderloadout.json",    	"7332.387695 5.712450 2651.121338",     {"7332.387695 5.712450 2651.121338", "7632.803223 5.507639 3075.661865", "7621.013184 5.892049 3083.053223"} ));
+            Data.Group.Insert( new ExpAIGroup(10, 	"WALK",     "REVERSE",  "INSURGENT",    "HumanLoadout.json",  "1916.59 208.159 4010.34",          {"1916.59 208.159 4010.34","1895.84 209.13 3960.54", "1877.69 209.431 3888.43", "1858.52 211.273 3855.79", "1805.82 211.543 3797.75", "1600.85 212.617 3613.8"} ));
+            Data.Group.Insert( new ExpAIGroup(10, 	"WALK",     "REVERSE",  "INSURGENT",    "HumanLoadout.json", 	"8030.88 158.835 7929.06",          {"8030.88 158.835 7929.06", "7963.1 157.233 7962.07", "7814.7 153.932 8005.98", "7701.14 150.676 8071.15", "7600.04 147.619 8144.57", "7518.89 144.197 822.29", "7461.86 143.722 8296.28", "7390.85 141.246 8414.14"} ));
+            Data.Group.Insert( new ExpAIGroup(10,	"WALK",     "REVERSE",  "INSURGENT",    "HumanLoadout.json", 	"7555.1 288.249 1897.49",  			{"7555.1 288.249 1897.49", "7586.85 288.08 1907.81", "7695.77 289.716 1982.37", "7868.56 297.397 2086.09", "8066.59 296.357 2194.71"} ));
         break;
         default:
             Print("Generating default Patrol config for "+worldName);
@@ -324,4 +323,3 @@ void ExpInit_DefaultPatrolsSettings(out ExpAIGroups Data)
  *      If you want to update this file, improve it or fix issues with it, yes you can. Just do it, share your work with others.
  *      If you want us (Expansion) to update the official file(s), contact LieutenantMaster#9023 on DISCORD (please not on steam).
 */
-
