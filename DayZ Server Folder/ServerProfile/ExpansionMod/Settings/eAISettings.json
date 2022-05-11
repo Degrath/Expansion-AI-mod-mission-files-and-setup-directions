@@ -1,0 +1,11 @@
+{
+  "m_Version": 2,
+  "AccuracyMin": 0.95,
+  "AccuracyMax": 1,
+  "Admins": [
+    ""
+  ],
+  "MaximumDynamicPatrols": -1,
+  "Vaulting": 0,
+  "Manners": 0
+}
