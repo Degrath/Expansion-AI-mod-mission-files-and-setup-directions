@@ -54,6 +54,23 @@ class CustomMission: MissionServer
 
 		return m_player;
 	}
+	//Does not work 100% as intended USE AT YOUR OWN RISK!!
+	//override void InvokeOnConnect(PlayerBase player, PlayerIdentity identity)
+	//{	
+	//	eAIGroup playerGroup = player.GetGroup();
+	//	if(!playerGroup)
+	//		playerGroup = eAIGroup.GetGroupByLeader(player);
+	//	
+	//	super.InvokeOnConnect(player, identity);		
+	//	playerGroup.SetFaction(new eAIFactionCivilian());
+	//	eAIFaction faction = playerGroup.GetFaction();
+	//	
+	//	Print("==============Debug Check===========================");
+	//	Print("The Player has been assigned to faction: " +faction);
+	//	Print("The Player belongs to: " +playerGroup);
+	//	Print("==============End Debug Check=======================");	
+	//	
+	//}	
 
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
