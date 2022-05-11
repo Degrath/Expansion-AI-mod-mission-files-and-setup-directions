@@ -48,11 +48,7 @@ Next find the Main method and copy the following code somewhere before the closi
 
 save and close init.c
 
- Now open the supplied /mpmissions/dayzOffline.chernarus/ directory and copy the AI directory into your /mpmissions/"your map"/ directory.
  
- If you are using an older version of eAI or previous versions of the AI_init.c you can
-remove the directories and files if you no longer need the data inside.
-
  You can edit the loadout.json files and the PatrolSettings.json now to suit your servers need
 or Launch the server and enjoy.
 
