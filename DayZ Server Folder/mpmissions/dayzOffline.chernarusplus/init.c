@@ -1,4 +1,4 @@
-#include "$CurrentDir:ServerProfile/ExpansionMod/AI/Patrols/init_eAI.c"
+#include "$profile:ServerProfile/ExpansionMod/AI/Patrols/init_eAI.c"
 
 void main()
 {
