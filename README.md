@@ -36,7 +36,7 @@ your profiles directory.
 open the init.c found in your servers mpmissions directory.
 Edit the top line of your file to include the following line of code:
 
-		## UPDATED -----
+		## UPDATED 5/10/2022-----
 		#include "$CurrentDir:ServerProfile/ExpansionMod/AI/Patrols/init_eAI.c"
 		(This file is no longer in your missions folder.)
 		## -------------
