@@ -1,5 +1,4 @@
-
-## INCOMING CHANGES - I cant do it all tonigt and the readme will be updated last, I am uploading the new files structure and files so you can follow along. Nearly everything has moved to its final home. The drop and go setup should work still with the new package, I just tested a new server to be sure but I only ran it once. Hope I can get everything else up to date by tomorrow evening at the latest.
+## UPDATED 5/12/2022
 
 ## DROP AND GO SETUP
 This is a simple install to get AI Patrols up and running on your servers map. Thanks to truedolphin
@@ -30,16 +29,16 @@ that is part of this package and the server will generate a new one based upon t
 
 ## MANUAL EDITING FOR EXISTING SERVERS
 
-Open your servers profiles directory and copy the supplied eAI and ExpansionMod directories into
+Open your servers profiles directory and copy the supplied ExpansionMod directories into
 your profiles directory.
 
 open the init.c found in your servers mpmissions directory.
 Edit the top line of your file to include the following line of code:
 
-		## UPDATED 5/10/2022-----
+		
 		#include "$profile:ServerProfile/ExpansionMod/AI/Patrols/init_eAI.c"
-		(This file is no longer in your missions folder.)
-		## -------------
+		(This file is no longer in your missions folder and needs to be redirected.)
+		
 Next find the Main method and copy the following code somewhere before the closing bracket
  of the main method. Keep it outside of any for loops inside of main.
  
