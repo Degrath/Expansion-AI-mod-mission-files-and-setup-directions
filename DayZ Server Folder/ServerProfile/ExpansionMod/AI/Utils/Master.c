@@ -9,24 +9,20 @@ m_ClassName = "eAI_Vehicles_GoTo_State_0";
 m_Name = "GoTo";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 auto group = unit.GetGroup();	
 auto leader = group.GetLeader();	
 Class.CastTo(transport, leader.GetParent());	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 vector direction;	
 transport.CrewEntryWS(seat, position, direction);
-unit.OverridePosition(position);
+unit.OverrideTargetPosition(position);
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -43,25 +39,24 @@ m_ClassName = "eAI_Vehicles_GetIn_OpenDoor_State_0";
 m_Name = "GetIn_OpenDoor";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 ExpansionFSMHelper.DoorAnimationSource(transport, seat, hasDoor, source);	
-if (hasDoor) transport.SetAnimationPhase(source, 1.0);	
+if (hasDoor)	
+{	
+transport.SetAnimationPhase(source, 1.0);	
+}	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (!hasDoor) return EXIT;
 vector direction;	
 transport.CrewEntryWS(seat, position, direction);
-unit.OverridePosition(position);	
+unit.OverrideTargetPosition(position);	
 if (transport && transport.GetAnimationPhase(source) <= 0.5) return CONTINUE;	
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -78,25 +73,21 @@ m_ClassName = "eAI_Vehicles_GetIn_CloseDoor_State_0";
 m_Name = "GetIn_CloseDoor";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 ExpansionFSMHelper.DoorAnimationSource(transport, seat, hasDoor, source);	
 if (hasDoor) transport.SetAnimationPhase(source, 0.0);	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (!hasDoor) return EXIT;	
 vector direction;	
 transport.CrewEntryWS(seat, position, direction);
-unit.OverridePosition(position);
+unit.OverrideTargetPosition(position);
 if (transport && transport.GetAnimationPhase(source) >= 0.5) return CONTINUE;	
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -111,27 +102,23 @@ m_ClassName = "eAI_Vehicles_GetIn_State_0";
 m_Name = "GetIn";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 auto group = unit.GetGroup();	
 auto leader = group.GetLeader();	
 Class.CastTo(transport, leader.GetParent());
 unit.Notify_Transport(transport, seat);	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 vector direction;	
 transport.CrewEntryWS(seat, position, direction);
-unit.OverridePosition(position);	
+unit.OverrideTargetPosition(position);	
 auto vehCmd = unit.GetCommand_VehicleAI();	
 if (vehCmd && vehCmd.IsGettingIn()) return CONTINUE;
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -143,19 +130,15 @@ m_ClassName = "eAI_Vehicles_Sitting_State_0";
 m_Name = "Sitting";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -172,7 +155,6 @@ m_ClassName = "eAI_Vehicles_GetOut_OpenDoor_State_0";
 m_Name = "GetOut_OpenDoor";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 seat = unit.GetCommand_VehicleAI().GetVehicleSeat();	
 object = unit.GetCommand_VehicleAI().GetObject();	
 if (Class.CastTo(transport, object))	
@@ -182,18 +164,15 @@ if (hasDoor) transport.SetAnimationPhase(source, 1.0);
 }	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (!hasDoor) return EXIT;	
-unit.OverridePosition(unit.GetPosition());
+unit.OverrideTargetPosition(unit.GetPosition());
 if (transport && transport.GetAnimationPhase(source) <= 0.5) return CONTINUE;	
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -210,7 +189,6 @@ m_ClassName = "eAI_Vehicles_GetOut_CloseDoor_State_0";
 m_Name = "GetOut_CloseDoor";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 seat = unit.GetCommand_VehicleAI().GetVehicleSeat();	
 object = unit.GetCommand_VehicleAI().GetObject();	
 if (Class.CastTo(transport, object))	
@@ -220,18 +198,15 @@ if (hasDoor) transport.SetAnimationPhase(source, 0.0);
 }	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (!hasDoor) return EXIT;	
-unit.OverridePosition(unit.GetPosition());
+unit.OverrideTargetPosition(unit.GetPosition());
 if (transport && transport.GetAnimationPhase(source) >= 0.5) return CONTINUE;	
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -243,22 +218,18 @@ m_ClassName = "eAI_Vehicles_GetOut_State_0";
 m_Name = "GetOut";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 unit.GetCommand_VehicleAI().GetOutVehicle();	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
-unit.OverridePosition(unit.GetPosition());
+unit.OverrideTargetPosition(unit.GetPosition());
 auto vehCmd = unit.GetCommand_VehicleAI();	
 if (vehCmd && vehCmd.IsGettingOut()) return CONTINUE;	
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -273,7 +244,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Vehicles_GoTo_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAIState"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 auto group = unit.GetGroup(); 
 if (!group) return SUCCESS;
 auto leader = group.GetLeader(); 
@@ -310,7 +280,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Vehicles_GoTo_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Vehicles_GetIn_OpenDoor_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 dst.transport = src.transport;	
 dst.seat = src.seat;	
 dst.position = src.position;
@@ -332,7 +301,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Vehicles_GetIn_OpenDoor_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Vehicles_GetIn_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 dst.transport = src.transport;	
 dst.seat = src.seat;	
 dst.position = src.position;
@@ -354,7 +322,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Vehicles_GetIn_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Vehicles_GetIn_CloseDoor_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 dst.transport = src.transport;	
 dst.seat = src.seat;
 return SUCCESS; 
@@ -374,7 +341,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Vehicles_GetIn_CloseDoor_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Vehicles_Sitting_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -392,7 +358,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Vehicles_Sitting_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Vehicles_GetOut_OpenDoor_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 auto group = unit.GetGroup(); 
 if (!group) return SUCCESS;
 auto leader = group.GetLeader(); 
@@ -415,7 +380,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Vehicles_GetOut_OpenDoor_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Vehicles_GetOut_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -433,7 +397,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Vehicles_GetOut_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Vehicles_GetOut_CloseDoor_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -451,7 +414,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Vehicles_GetOut_CloseDoor_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAIState"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -466,7 +428,6 @@ Setup();
 SortTransitions();
 }
 void Setup() {
-auto trace = CF_Trace_0(this, "Setup");
 AddState(new eAI_Vehicles_GoTo_State_0(this, m_Unit));
 AddState(new eAI_Vehicles_GetIn_OpenDoor_State_0(this, m_Unit));
 AddState(new eAI_Vehicles_GetIn_CloseDoor_State_0(this, m_Unit));
@@ -492,19 +453,19 @@ return new eAI_Vehicles_FSM_0(unit, parentState);
 class eAI_Fighting_Positioning_State_0 extends eAIState {
 eAI_Fighting_FSM_0 fsm;
 vector position;
+float time;
+float movementDirection;
 void eAI_Fighting_Positioning_State_0(eAIFSM _fsm, eAIBase _unit) {
 Class.CastTo(fsm, _fsm);
 m_ClassName = "eAI_Fighting_Positioning_State_0";
 m_Name = "Positioning";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
+time = 0;	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 bool wantsLower = false;	
 bool wantsRaise = false;
 if (GetGame().GetTime() - fsm.LastFireTime > fsm.TimeBetweenFiring)	
@@ -515,7 +476,8 @@ auto target = unit.GetTarget();
 if (target)	
 {	
 position = target.GetPosition(unit);	
-auto distance = vector.DistanceSq(unit.GetPosition(), position);	
+auto aimPosition = position + target.GetAimOffset(unit);	
+auto distanceSq = vector.DistanceSq(unit.GetPosition(), position);	
 bool shouldBeMeleeing = false;
 auto hands = unit.GetHumanInventory().GetEntityInHands();	
 if (!hands)	
@@ -524,7 +486,7 @@ shouldBeMeleeing = true;
 }	
 else if (hands.IsWeapon())	
 {	
-if (distance < 1.0)	
+if (distanceSq <= 2.25)	
 {	
 shouldBeMeleeing = true;	
 }	
@@ -535,7 +497,7 @@ shouldBeMeleeing = true;
 }	
 if (shouldBeMeleeing)	
 {	
-if (distance < 4.0)	
+if (distanceSq <= 4.0)	
 {	
 wantsRaise = true;	
 }	
@@ -543,21 +505,49 @@ else
 {	
 wantsLower = true;	
 }	
-}	
 }
-if (wantsRaise)	
+if (distanceSq <= 1.0)	
+{	
+time += DeltaTime;	
+//unit.OverrideStance(DayZPlayerConstants.STANCEIDX_RAISEDERECT);	
+if (!movementDirection || time > Math.RandomIntInclusive(1, 3))	
+{	
+if (Math.RandomIntInclusive(0, 1))	
+movementDirection = Math.RandomFloat(135, 180);	
+else	
+movementDirection = Math.RandomFloat(-135, -180);	
+}	
+unit.OverrideMovementDirection(true, movementDirection);	
+unit.OverrideMovementSpeed(true, Math.RandomIntInclusive(1, 2));	
+}	
+else	
+{	
+//unit.OverrideStance(0);	
+unit.OverrideMovementDirection(false, 0);	
+unit.OverrideMovementSpeed(false, 0);	
+time = 0;	
+movementDirection= 0;	
+}
+unit.LookAtPosition(aimPosition);	
+unit.AimAtPosition(aimPosition);	
+}	
+else	
+{	
+unit.OverrideMovementDirection(false, 0);	
+unit.OverrideMovementSpeed(false, 0);	
+}
+if (wantsRaise && unit.CanRaiseWeapon())	
 {	
 unit.RaiseWeapon(true);	
 }	
-else if (!wantsLower)	
+else if (wantsLower || !unit.CanRaiseWeapon())	
 {	
 unit.RaiseWeapon(false);	
 }
-unit.OverridePosition(position);
+unit.OverrideTargetPosition(position);
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -571,23 +561,20 @@ m_ClassName = "eAI_Fighting_FireWeapon_State_0";
 m_Name = "FireWeapon";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 unit.RaiseWeapon(true);
 time = 0;
 fsm.LastFireTime = GetGame().GetTime();	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (!target)	
 return EXIT;
 auto lowPosition = target.GetPosition(unit);	
 auto aimPosition = lowPosition + target.GetAimOffset(unit);
 time += DeltaTime;	
-unit.OverridePosition(lowPosition);	
+unit.OverrideTargetPosition(lowPosition);	
 unit.LookAtPosition(aimPosition);	
 unit.AimAtPosition(aimPosition);
 if (!unit.IsRaised() || !unit.IsWeaponRaiseCompleted())	
@@ -604,7 +591,6 @@ unit.TryFireWeapon();
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -612,52 +598,71 @@ class eAI_Fighting_Melee_State_0 extends eAIState {
 eAI_Fighting_FSM_0 fsm;
 float time;
 eAITarget target;
+float movementDirection;
 void eAI_Fighting_Melee_State_0(eAIFSM _fsm, eAIBase _unit) {
 Class.CastTo(fsm, _fsm);
 m_ClassName = "eAI_Fighting_Melee_State_0";
 m_Name = "Melee";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 time = 0;
 fsm.LastFireTime = GetGame().GetTime();	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (!target)	
 return EXIT;
 auto lowPosition = target.GetPosition(unit);	
 auto aimPosition = lowPosition + target.GetAimOffset(unit);
 time += DeltaTime;	
-unit.OverridePosition(lowPosition);	
+unit.OverrideTargetPosition(lowPosition);	
 unit.LookAtPosition(aimPosition);	
 unit.AimAtPosition(aimPosition);
-if (target.GetDistance(unit) > 1.0)	
+float distanceSq = target.GetDistanceSq(unit);	
+if (distanceSq > 2.25)	
 {	
 if (time >= 0.5)	
 {	
+time = 0;	
 return EXIT;	
 }
 return CONTINUE;	
 }
 auto direction = vector.Direction(unit.GetPosition(), lowPosition).Normalized();	
-if (vector.Dot(unit.GetDirection(), direction) < 0.75)	
+if (vector.Dot(unit.GetDirection(), direction) < 0.75 || distanceSq <= 1.0)	
 {	
-if (time >= 0.5)	
+if (time >= Math.RandomIntInclusive(1, 3))	
 {	
+//unit.OverrideStance(0);	
+unit.OverrideMovementDirection(false, 0);	
+unit.OverrideMovementSpeed(false, 0);	
+time = 0;	
+movementDirection = 0;	
 return EXIT;	
 }
+//unit.OverrideStance(DayZPlayerConstants.STANCEIDX_RAISEDERECT);	
+if (!movementDirection || time > Math.RandomIntInclusive(1, 3))	
+{	
+if (Math.RandomIntInclusive(0, 1))	
+movementDirection = Math.RandomFloat(135, 180);	
+else	
+movementDirection = Math.RandomFloat(-135, -180);	
+}	
+unit.OverrideMovementDirection(true, movementDirection);	
+unit.OverrideMovementSpeed(true, Math.RandomIntInclusive(1, 2));
+return CONTINUE;	
+}
+if (unit.IsInMelee() && time < 0.3)	
+{	
 return CONTINUE;	
 }
 unit.Notify_Melee();	
 time = 0;	
+movementDirection = 0;	
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -672,7 +677,6 @@ Class.CastTo(src, _fsm.GetState("eAIState"));
 Class.CastTo(dst, _fsm.GetState("eAI_Fighting_Melee_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 // we are targetting an entity?	
 dst.target = unit.GetTarget();	
 if (!dst.target || !dst.target.IsMeleeViable(unit)) return FAIL;
@@ -693,7 +697,6 @@ Class.CastTo(src, _fsm.GetState("eAIState"));
 Class.CastTo(dst, _fsm.GetState("eAI_Fighting_FireWeapon_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 // we are aiming at something?	
 dst.target = unit.GetTarget();	
 if (!dst.target) return FAIL;
@@ -701,7 +704,8 @@ if (unit.IsInMelee()) return FAIL;
 // we are holding a weapon	
 Weapon weapon;	
 if (!Class.CastTo(weapon, unit.GetItemInHands())) return FAIL;
-//TODO: check line of sight	
+// CanRaiseWeapon will return false if there is no line of sight	
+if (!unit.CanRaiseWeapon()) return FAIL;	
 int mi = weapon.GetCurrentMuzzle();	
 if (weapon.IsChamberEmpty(mi)) return FAIL;	
 if (weapon.IsChamberFiredOut(mi)) return FAIL;	
@@ -723,7 +727,6 @@ Class.CastTo(src, _fsm.GetState("eAIState"));
 Class.CastTo(dst, _fsm.GetState("eAI_Fighting_Positioning_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -740,7 +743,6 @@ Setup();
 SortTransitions();
 }
 void Setup() {
-auto trace = CF_Trace_0(this, "Setup");
 AddState(new eAI_Fighting_Positioning_State_0(this, m_Unit));
 AddState(new eAI_Fighting_FireWeapon_State_0(this, m_Unit));
 AddState(new eAI_Fighting_Melee_State_0(this, m_Unit));
@@ -760,19 +762,15 @@ m_ClassName = "eAI_Reloading_Start_State_0";
 m_Name = "Start";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 fsm.last_attempt_time = GetGame().GetTime();	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -785,22 +783,18 @@ m_ClassName = "eAI_Reloading_Reloading_State_0";
 m_Name = "Reloading";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 unit.RaiseWeapon(true);	
 unit.ReloadWeaponAI(fsm.weapon, magazine);	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 unit.RaiseWeapon(false);	
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (!unit.GetWeaponManager()) return EXIT;
 if (unit.GetWeaponManager().IsRunning()) return CONTINUE;
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -813,16 +807,13 @@ m_ClassName = "eAI_Reloading_Reloading_Fail_State_0";
 m_Name = "Reloading_Fail";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 unit.RaiseWeapon(false);
 time = 0;	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 time += DeltaTime;
 // waiting for the weapon to be lowered	
 if (time < 0.5)	
@@ -830,7 +821,6 @@ return CONTINUE;
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -843,19 +833,15 @@ m_ClassName = "eAI_Reloading_Swapping_Gun_State_0";
 m_Name = "Swapping_Gun";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 unit.LocalTakeEntityToHands(item);	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -868,19 +854,15 @@ m_ClassName = "eAI_Reloading_Swapping_Melee_State_0";
 m_Name = "Swapping_Melee";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 unit.LocalTakeEntityToHands(item);	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -892,15 +874,12 @@ m_ClassName = "eAI_Reloading_Removing_State_0";
 m_Name = "Removing";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (unit.GetItemInHands() != fsm.weapon)	
 return EXIT;  // remove complete
 InventoryLocation il_src = new InventoryLocation();	
@@ -914,7 +893,6 @@ unit.ServerTakeToDst(il_src, il_dst);
 return CONTINUE; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -929,21 +907,23 @@ Class.CastTo(src, _fsm.GetState("eAI_Reloading_Start_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Reloading_Reloading_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 int mi = fsm.weapon.GetCurrentMuzzle();	
 Magazine mag;	
 if (fsm.weapon.HasInternalMagazine(mi) && fsm.weapon.GetInternalMagazineCartridgeCount(mi) > 0)	
 {	
+EXTrace.Start0(EXTrace.AI, this, "Reloading " + fsm.weapon + " from internal mag");	
 dst.magazine = null;	
 }	
 else if (Class.CastTo(mag, fsm.weapon.GetMagazine(mi)) && mag.GetAmmoCount() > 0)	
 {	
+EXTrace.Start0(EXTrace.AI, this, "Reloading " + fsm.weapon + " from attached mag");	
 dst.magazine = mag;	
 }	
 else	
 {	
 dst.magazine = unit.GetMagazineToReload(fsm.weapon);	
 if (!dst.magazine) return FAIL;	
+EXTrace.Start0(EXTrace.AI, this, "Reloading " + fsm.weapon + " from mag " + dst.magazine);	
 }	
 return SUCCESS; 
 }
@@ -962,7 +942,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Reloading_Start_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Reloading_Reloading_Fail_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -980,7 +959,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Reloading_Removing_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Reloading_Swapping_Gun_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 //! TODO: Fix weapon change in MP	
 if (GetGame().IsMultiplayer()) return FAIL;
 dst.item = unit.GetWeaponToUse(true);
@@ -1002,7 +980,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Reloading_Removing_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Reloading_Swapping_Melee_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 dst.item = unit.GetMeleeWeaponToUse();
 if (!dst.item) return FAIL; 
 return SUCCESS; 
@@ -1022,7 +999,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Reloading_Reloading_Fail_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Reloading_Removing_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -1040,7 +1016,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Reloading_Reloading_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAIState"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -1058,7 +1033,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Reloading_Swapping_Gun_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Reloading_Reloading_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 dst.magazine = unit.GetMagazineToReload(fsm.weapon);	
 if (!dst.magazine) return FAIL;	
 return SUCCESS; 
@@ -1078,7 +1052,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Reloading_Swapping_Gun_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAIState"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -1096,7 +1069,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Reloading_Swapping_Melee_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAIState"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -1114,7 +1086,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Reloading_Removing_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAIState"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -1131,7 +1102,6 @@ Setup();
 SortTransitions();
 }
 void Setup() {
-auto trace = CF_Trace_0(this, "Setup");
 AddState(new eAI_Reloading_Start_State_0(this, m_Unit));
 AddState(new eAI_Reloading_Reloading_State_0(this, m_Unit));
 AddState(new eAI_Reloading_Reloading_Fail_State_0(this, m_Unit));
@@ -1155,55 +1125,70 @@ return new eAI_Reloading_FSM_0(unit, parentState);
 }
 class eAI_Master_Idle_State_0 extends eAIState {
 eAI_Master_FSM_0 fsm;
+float time;
+float timeLower;
 void eAI_Master_Idle_State_0(eAIFSM _fsm, eAIBase _unit) {
 Class.CastTo(fsm, _fsm);
 m_ClassName = "eAI_Master_Idle_State_0";
 m_Name = "Idle";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
-unit.OverridePath();
+time = 0;	
 if (unit.IsRaised())	
-unit.RaiseWeapon(false);
+timeLower = Math.RandomFloat(0.5, 1.5);
+if (!unit.GetTarget())	
+{	
 if (unit.GetLookDirectionRecalculate())	
 unit.LookAtDirection("0 0 1");
 if (unit.GetAimDirectionRecalculate())	
 unit.AimAtDirection("0 0 1");	
 }
+unit.OverrideMovementDirection(false, 0);	
+unit.OverrideMovementSpeed(true, 0);	
+unit.Expansion_GetUp();	
+}
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
+if (!unit.GetTarget())	
+{	
+time += DeltaTime;
+if (unit.IsRaised() && time < timeLower)	
+return CONTINUE;
+unit.RaiseWeapon(false);	
+}	
+else if (!unit.CanRaiseWeapon())	
+{	
+unit.RaiseWeapon(false);	
+}
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
 class eAI_Master_Unconscious_State_0 extends eAIState {
 eAI_Master_FSM_0 fsm;
+float time;
 void eAI_Master_Unconscious_State_0(eAIFSM _fsm, eAIBase _unit) {
 Class.CastTo(fsm, _fsm);
 m_ClassName = "eAI_Master_Unconscious_State_0";
 m_Name = "Unconscious";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
-unit.OverridePosition(unit.GetPosition());	
+time = 0;	
+unit.OverrideTargetPosition(unit.GetPosition());	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
+if (!unit.IsUnconscious())	
+time += DeltaTime;  //! Allow time to stand up so we don't instantly start firing 
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
-return !(unit.IsUnconscious());	
+return !unit.IsUnconscious() && time > 3;	
 }
 }
 class eAI_Master_Trading_State_0 extends eAIState {
@@ -1214,18 +1199,14 @@ m_ClassName = "eAI_Master_Trading_State_0";
 m_Name = "Trading";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
-unit.OverridePosition(unit.GetPosition());	
+unit.OverrideTargetPosition(unit.GetPosition());	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return !(unit.IsTrading());	
 }
 }
@@ -1238,20 +1219,17 @@ m_ClassName = "eAI_Master_FollowFormation_State_0";
 m_Name = "FollowFormation";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
-unit.OverridePosition(group.GetFormationPosition(unit));
+unit.OverrideTargetPosition(group.GetFormationPosition(unit));	
+unit.OverrideMovementSpeed(false, 0);
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -1269,7 +1247,6 @@ m_ClassName = "eAI_Master_TraversingWaypoints_State_0";
 m_Name = "TraversingWaypoints";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 path = unit.GetGroup().GetWaypoints();	
 if (path.Count() == 0)	
 {	
@@ -1278,11 +1255,9 @@ path = { unit.GetPosition() };
 behaviour = unit.GetGroup().GetWaypointBehaviour();	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 float distance = vector.DistanceSq(unit.GetPosition(), path[index]);	
 if (distance < threshold)	
 {	
@@ -1319,11 +1294,11 @@ index = 0;
 }	
 }
 index = Math.Clamp(index, 0, path.Count() - 1);
-unit.OverridePosition(path[index]);
+unit.OverrideTargetPosition(path[index]);	
+unit.OverrideMovementSpeed(false, 0);
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -1338,21 +1313,17 @@ m_SubFSM = new eAI_Vehicles_FSM_0(_unit, this);
 Class.CastTo(sub_fsm, m_SubFSM);
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 if (Event != "") m_SubFSM.Start(Event);
 else m_SubFSM.StartDefault();
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 if (Aborted) m_SubFSM.Abort(Event);
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (m_SubFSM.Update(DeltaTime, SimulationPrecision) == EXIT) return EXIT;
 return CONTINUE;
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 if (!m_SubFSM.ExitGuard(Event)) return false;
 return true;
 }
@@ -1368,23 +1339,19 @@ m_SubFSM = new eAI_Fighting_FSM_0(_unit, this);
 Class.CastTo(sub_fsm, m_SubFSM);
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 if (Event != "") m_SubFSM.Start(Event);
 else m_SubFSM.StartDefault();
 unit.UpdateAimArbitration();	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 if (Aborted) m_SubFSM.Abort(Event);
 unit.StopAimArbitration();	
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (m_SubFSM.Update(DeltaTime, SimulationPrecision) == EXIT) return EXIT;
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 if (!m_SubFSM.ExitGuard(Event)) return false;
 return true;
 }
@@ -1400,23 +1367,19 @@ m_SubFSM = new eAI_Reloading_FSM_0(_unit, this);
 Class.CastTo(sub_fsm, m_SubFSM);
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 if (Event != "") m_SubFSM.Start(Event);
 else m_SubFSM.StartDefault();
 unit.UpdateAimArbitration();	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 if (Aborted) m_SubFSM.Abort(Event);
 unit.StopAimArbitration();	
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (m_SubFSM.Update(DeltaTime, SimulationPrecision) == EXIT) return EXIT;
 return CONTINUE;
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 if (!m_SubFSM.ExitGuard(Event)) return false;
 return true;
 }
@@ -1430,22 +1393,18 @@ m_ClassName = "eAI_Master_Weapon_Unjamming_State_0";
 m_Name = "Weapon_Unjamming";
 }
 override void OnEntry(string Event, eAIState From) {
-auto trace = CF_Trace_2(this, "OnEntry").Add(Event).Add(From);
 unit.RaiseWeapon(true);
 unit.StartActionObject(eAIActionWeaponUnjam, null);	
 }
 override void OnExit(string Event, bool Aborted, eAIState To) {
-auto trace = CF_Trace_3(this, "OnExit").Add(Event).Add(Aborted).Add(To);
 unit.RaiseWeapon(false);	
 }
 override int OnUpdate(float DeltaTime, int SimulationPrecision) {
-auto trace = CF_Trace_2(this, "OnUpdate").Add(DeltaTime).Add(SimulationPrecision);
 if (!unit.GetWeaponManager()) return EXIT;
 if (unit.GetWeaponManager().IsRunning()) return CONTINUE;
 return EXIT; 
 }
 override bool ExitGuard(string Event) {
-auto trace = CF_Trace_1(this, "ExitGuard").Add(Event);
 return true;
 }
 }
@@ -1460,7 +1419,6 @@ Class.CastTo(src, _fsm.GetState("eAIState"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Unconscious_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 if (!(unit.IsUnconscious())) return FAIL;
 return SUCCESS; 
 }
@@ -1479,7 +1437,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Master_Unconscious_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Idle_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 if (unit.IsUnconscious()) return FAIL;
 return SUCCESS; 
 }
@@ -1498,7 +1455,6 @@ Class.CastTo(src, _fsm.GetState("eAIState"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Trading_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 if (!(unit.IsTrading())) return FAIL;
 return SUCCESS; 
 }
@@ -1517,7 +1473,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Master_Trading_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Idle_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 if (unit.IsTrading()) return FAIL;
 return SUCCESS; 
 }
@@ -1536,7 +1491,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Master_Idle_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_FollowFormation_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 if (unit.GetThreatToSelf() > 0.4) return FAIL;
 dst.group = unit.GetGroup(); 
 if (!dst.group) return FAIL;
@@ -1560,7 +1514,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Master_Idle_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_TraversingWaypoints_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 if (unit.GetThreatToSelf() > 0.4) return FAIL;
 auto group = unit.GetGroup(); 
 if (!group) return FAIL;
@@ -1584,7 +1537,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Master_TraversingWaypoints_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Idle_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 if (unit.GetThreatToSelf() > 0.4) return SUCCESS;
 return FAIL; 
 }
@@ -1603,7 +1555,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Master_FollowFormation_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Idle_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 auto group = unit.GetGroup();	
 if (group && group.GetFormationState() != eAIGroupFormationState.IN) return SUCCESS;	
 if (unit.GetThreatToSelf() > 0.4) return SUCCESS;
@@ -1624,13 +1575,12 @@ Class.CastTo(src, _fsm.GetState("eAIState"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Weapon_Reloading_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 if (GetGame().GetTime() - dst.sub_fsm.last_attempt_time < 5000) return FAIL;
 if (!Class.CastTo(dst.sub_fsm.weapon, unit.GetItemInHands())) return FAIL;
 int mi = dst.sub_fsm.weapon.GetCurrentMuzzle();	
-Magazine mag = dst.sub_fsm.weapon.GetMagazine(mi);	
-if (mag && mag.GetAmmoCount() > 0 && !dst.sub_fsm.weapon.IsChamberFiredOut(mi)) return FAIL;
-if (!dst.sub_fsm.weapon.IsChamberEmpty(mi) && !dst.sub_fsm.weapon.IsChamberFiredOut(mi)) return FAIL;	
+bool isChamberEmpty = dst.sub_fsm.weapon.IsChamberEmpty(mi);	
+bool isChamberFiredOut = dst.sub_fsm.weapon.IsChamberFiredOut(mi);	
+if (!(isChamberFiredOut || isChamberEmpty)) return FAIL;	
 if (dst.sub_fsm.weapon.IsChamberJammed(mi)) return FAIL;
 // don't move to the state if the action manager is operating	
 if (!unit.GetActionManager() || unit.GetActionManager().GetRunningAction()) return FAIL;
@@ -1651,7 +1601,6 @@ Class.CastTo(src, _fsm.GetState("eAIState"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Weapon_Unjamming_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 if (!Class.CastTo(dst.weapon, unit.GetItemInHands())) return FAIL;
 if (!unit.GetWeaponManager().CanUnjam(dst.weapon)) return FAIL;
 return SUCCESS; 
@@ -1671,7 +1620,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Master_Weapon_Reloading_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Idle_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -1689,7 +1637,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Master_Weapon_Unjamming_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Idle_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -1707,8 +1654,7 @@ Class.CastTo(src, _fsm.GetState("eAIState"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Fighting_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
-if (unit.GetThreatToSelf() < 0.4) return FAIL;
+if (unit.GetThreatToSelf(true) < 0.4) return FAIL;
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -1726,7 +1672,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Master_Fighting_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Idle_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 if (unit.GetThreatToSelf() > 0.2) return FAIL;
 return SUCCESS; 
 }
@@ -1745,7 +1690,6 @@ Class.CastTo(src, _fsm.GetState("eAIState"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Vehicles_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 auto group = unit.GetGroup(); 
 if (!group) return FAIL;
 if (group.GetFormationState() != eAIGroupFormationState.IN) return FAIL;
@@ -1780,7 +1724,6 @@ Class.CastTo(src, _fsm.GetState("eAI_Master_Vehicles_State_0"));
 Class.CastTo(dst, _fsm.GetState("eAI_Master_Idle_State_0"));
 }
 override int Guard() {
-auto trace = CF_Trace_0(this, "Guard");
 return SUCCESS; 
 }
 override eAIState GetSource() { return src; }
@@ -1795,7 +1738,6 @@ Setup();
 SortTransitions();
 }
 void Setup() {
-auto trace = CF_Trace_0(this, "Setup");
 AddState(new eAI_Master_Idle_State_0(this, m_Unit));
 AddState(new eAI_Master_Unconscious_State_0(this, m_Unit));
 AddState(new eAI_Master_Trading_State_0(this, m_Unit));
