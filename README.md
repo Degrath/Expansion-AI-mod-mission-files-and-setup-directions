@@ -1,5 +1,5 @@
 
-## INCOMING CHANGES - I cant do it all tonigt and the readme will be updated last, I am uploading the new files structure and files so you can follow along. Nearly everything has moved to its final home. Currently the init_eAI.c has a small issue with DeerIsle so the default partols have been commented out until I can fix them. The drop and go setup should work still with the new package, I just tested a new server to be sure but I only ran it once. Hope I can get everything else up to date by tomorrow evening at the latest.
+## INCOMING CHANGES - I cant do it all tonigt and the readme will be updated last, I am uploading the new files structure and files so you can follow along. Nearly everything has moved to its final home. The drop and go setup should work still with the new package, I just tested a new server to be sure but I only ran it once. Hope I can get everything else up to date by tomorrow evening at the latest.
 
 ## DROP AND GO SETUP
 This is a simple install to get AI Patrols up and running on your servers map. Thanks to truedolphin
